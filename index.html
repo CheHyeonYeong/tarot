@@ -1,15 +1,77 @@
 <!DOCTYPE html>
-<html>  
+<html lang="ko">
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
-    <script src="main.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>타로 카드 뽑기</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            text-align: center;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        #cardResult {
+            margin-top: 20px;
+        }
+        #cardImage {
+            max-width: 200px;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Hello World</h1>
+    <div class="container">
+        <h1>타로 카드 뽑기</h1>
+        <button onclick="drawCard()">카드 뽑기</button>
+        <div id="cardResult"></div>
+        <img id="cardImage" src="" alt="타로 카드" style="display: none;">
+    </div>
 
+    <script>
+        const tarotCards = [
+            { name: "바보", meaning: "새로운 시작, 순수함, 모험", image: "/api/placeholder/200/300" },
+            { name: "마법사", meaning: "창의력, 기술, 의지력", image: "/api/placeholder/200/300" },
+            { name: "여사제", meaning: "직관, 지혜, 비밀", image: "/api/placeholder/200/300" },
+            { name: "여황제", meaning: "풍요, 안정, 모성", image: "/api/placeholder/200/300" },
+            { name: "황제", meaning: "권위, 구조, 통제", image: "/api/placeholder/200/300" },
+            { name: "교황", meaning: "전통, 신념, 조언", image: "/api/placeholder/200/300" },
+            { name: "연인", meaning: "사랑, 조화, 관계", image: "/api/placeholder/200/300" },
+            { name: "전차", meaning: "의지, 승리, 행동", image: "/api/placeholder/200/300" }
+        ];
+
+        function drawCard() {
+            const randomCard = tarotCards[Math.floor(Math.random() * tarotCards.length)];
+            const resultDiv = document.getElementById('cardResult');
+            const cardImage = document.getElementById('cardImage');
+            
+            resultDiv.innerHTML = `<h2>${randomCard.name}</h2><p>${randomCard.meaning}</p>`;
+            cardImage.src = randomCard.image;
+            cardImage.style.display = 'block';
+        }
+    </script>
 </body>
 </html>
